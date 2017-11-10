@@ -1,0 +1,36 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+.wrapper{
+    margin: auto;
+    width:60%;
+    height:100%;
+    position: relative;
+}
+.add_task_section{
+    width: 100%;
+    height: 5%;
+    position: relative;
+}
+
+.task_field{
+    width: 500px;
+    height: 100%;
+    margin: 0 0 10px 10px;
+    background-color: white;
+    border: black solid 1px;
+    border-radius: 5px;
+    position: relative;
+    float: left;
+}
+.button_add_task{
+    left: 520px;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    background-image: url("../img/add_task.png");
+    background-size: contain;
+    cursor: pointer;
+}
