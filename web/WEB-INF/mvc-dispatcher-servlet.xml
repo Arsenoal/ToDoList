@@ -3,10 +3,13 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <tx:annotation-driven/>
 
     <!--search for controller-->
-    <context:component-scan base-package="com.arsen.todolist"/>
+    <context:component-scan base-package="com.arsen.todolist.controller"/>
 
     <!--jsp location-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -18,7 +21,7 @@
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
         <property name="url"
-                  value="jdbc:mysql://localhost:3306/test?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;characterSetResults=UTF-8&amp;serverTimezone=Europe/Yerevan"/>
+                  value="jdbc:mysql://localhost:3306/test?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;characterSetResults=UTF-8&amp;serverTimezone=Europe/Moscow"/>
 
         <property name="username" value="root"/>
         <property name="password" value="arsenjan97"/>
@@ -43,12 +46,12 @@
         </property>
     </bean>
 
-    <bean id="taskDao" class="com.arsen.todolist.dao.TaskDaoImpl">
-        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
-    </bean>
-
     <bean id="taskService" class="com.arsen.todolist.service.TaskServiceImpl">
         <property name="taskDao" ref="taskDao"/>
+    </bean>
+
+    <bean id="taskDao" class="com.arsen.todolist.dao.TaskDaoImpl">
+        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
     </bean>
 
     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">

@@ -24,15 +24,15 @@ public class TaskController {
         this.taskService = taskService;
     }
 
-    @RequestMapping(value = "tasks", method = RequestMethod.GET)
+    @RequestMapping(value = "/tasks", method = RequestMethod.GET)
     public ResponseEntity<List<Task>> listTasks(){
         logger.info("get all tasks");
         List<Task> tasks = taskService.listTasks();
 
         if(tasks.isEmpty())
-            return new ResponseEntity<List<Task>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
-        return new ResponseEntity<List<Task>>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/task/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -41,9 +41,9 @@ public class TaskController {
         Task task = taskService.getTaskById(id);
 
         if(task == null)
-            return new ResponseEntity<Task>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
-        return new ResponseEntity<Task>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/task", method = RequestMethod.POST)
@@ -74,7 +74,7 @@ public class TaskController {
         if(findTask == null){
             logger.info(String.format("Task with id %d not found", id));
 
-            return new ResponseEntity<Task>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
         findTask.setId(task.getId());
@@ -83,7 +83,7 @@ public class TaskController {
         findTask.setDate(task.getDate());
         taskService.updateTask(findTask);
 
-        return new ResponseEntity<Task>(findTask, HttpStatus.OK);
+        return new ResponseEntity<>(findTask, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/task/{id}", method = RequestMethod.DELETE)
@@ -94,10 +94,10 @@ public class TaskController {
 
         if(findTask == null){
             logger.info(String.format("task by id %d not found", id));
-            return new ResponseEntity<Task>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
         taskService.removeTask(id);
-        return new ResponseEntity<Task>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

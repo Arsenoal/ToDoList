@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "tasks")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Task {
+public class Task{
 
     @Id
     @Column(name = "id")
