@@ -12,19 +12,17 @@ appName.controller('toDoController', function($scope, $http) {
         headers: {"Content-Type":"application/json; charset=utf-8"}
     }).then(function successCallback(response) {
         console.log("OK");
+        console.log(response);
         $scope.tasks = response.data
     }, function errorCallback(response) {
         console.log("error");
     });
 
     $scope.addTask = function () {
-        $scope.tasks.push({'title':$scope.newTask, 'done': false});
-        $scope.newTask = '';
+
     };
 
     $scope.clearCompleted = function () {
-        $scope.tasks = $scope.tasks.filter(function (item) {
-            return !item.done;
-        })
+
     };
 });

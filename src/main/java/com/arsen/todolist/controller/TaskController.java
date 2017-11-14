@@ -32,7 +32,7 @@ public class TaskController {
         if(tasks.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/task/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -43,7 +43,7 @@ public class TaskController {
         if(task == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(task, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/task", method = RequestMethod.POST)
@@ -58,7 +58,7 @@ public class TaskController {
             if(storedTask == null)
                 return new ResponseEntity<Task>(HttpStatus.INTERNAL_SERVER_ERROR);
 
-            return new ResponseEntity<Task>(HttpStatus.OK);
+            return new ResponseEntity<Task>(task, HttpStatus.OK);
         }else{
             taskService.updateTask(task);
             return new ResponseEntity<Task>(HttpStatus.CONFLICT);

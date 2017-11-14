@@ -18,7 +18,7 @@
     <ul>
       <li ng-repeat="task in tasks">
         <input type="checkbox" ng-model="task.done"/>
-        <span ng-class="{'done':task.done}">{{task.title}}</span>
+        <span ng-class="{'done':task.done}">{{task.description}}</span>
 
       </li>
     </ul>
