@@ -1,17 +1,16 @@
 package com.arsen.todolist.dao;
 
 import com.arsen.todolist.model.Task;
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
 public class TaskDaoImpl implements TaskDao {
-    private Logger logger = LoggerFactory.getLogger(TaskDaoImpl.class.getSimpleName());
+    private Logger logger = Logger.getLogger(TaskDaoImpl.class.getSimpleName());
     private SessionFactory sessionFactory;
 
     public void setSessionFactory(SessionFactory sessionFactory){

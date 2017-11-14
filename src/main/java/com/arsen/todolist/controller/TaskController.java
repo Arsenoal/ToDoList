@@ -2,8 +2,7 @@ package com.arsen.todolist.controller;
 
 import com.arsen.todolist.model.Task;
 import com.arsen.todolist.service.TaskService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -15,7 +14,7 @@ import java.util.List;
 
 @RestController
 public class TaskController {
-    private final static Logger logger = LoggerFactory.getLogger(TaskController.class);
+    private final static Logger logger = Logger.getLogger(TaskController.class);
     private TaskService taskService;
 
     @Autowired
