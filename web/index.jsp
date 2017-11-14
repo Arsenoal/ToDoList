@@ -14,10 +14,9 @@
       <button ng-disabled="frm.$invalid">add</button>
     </form>
     <button ng-click="clearCompleted()">clear completed</button>
-
     <ul>
       <li ng-repeat="task in tasks">
-        <input type="checkbox" ng-model="task.done"/>
+        <input type="checkbox" ng-model="task.isDone"/>
         <span ng-class="{'done':task.done}">{{task.description}}</span>
       </li>
     </ul>

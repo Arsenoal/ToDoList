@@ -47,6 +47,20 @@ appName.controller('toDoController', function($scope, $http) {
     };
 
     $scope.clearCompleted = function () {
+        $scope.tasks = $scope.tasks.filter( function(item){
+            if(item.isDone){
+                $http({
+                    method: "DELETE",
+                    url: urlBase + "/task/" + item.id,
+                    headers: {"Content-Type":"application/json; charset=utf-8"}
+                }).then(function successCallback(response){
+                    console.log("OK");
+                }, function errorCallback(response) {
+                    console.log("error");
+                })
+            }
 
+            return !item.isDone;
+        })
     };
 });
