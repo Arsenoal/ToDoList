@@ -19,7 +19,31 @@ appName.controller('toDoController', function($scope, $http) {
     });
 
     $scope.addTask = function () {
+        var newTask ={
+            "id": 0,
+            "date": new Date().getTime(),
+            "description": $scope.newTask,
+            "isDone": false
+        };
 
+        $scope.newTask = "";
+
+
+        console.log ("ADD new task:", newTask);
+        console.log ("POST request...");
+        $http({
+            method: "POST",
+            url: urlBase + "/task",
+            headers: {"Content-Type":"application/json; charset=utf-8"},
+            data: newTask
+        }).then(function successCallback(response) {
+            console.log("OK");
+            //console.log(response.data);
+            $scope.tasks.push(response.data);
+        }, function errorCallback(response){
+            console.log("error");
+            console.log(response);
+        })
     };
 
     $scope.clearCompleted = function () {
